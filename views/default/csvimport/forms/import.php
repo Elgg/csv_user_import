@@ -12,7 +12,7 @@
 	global $CONFIG;
 	
 	echo "<div class=\"contentWrapper\">";
-	echo autop(elgg_echo('csvimport:description'));
+	echo elgg_view('output/longtext', array('value' => elgg_echo('csvimport:description')));
 	
 	$file = elgg_view('input/file', array('internalname' => 'csvimport'));
 	$checkbox = elgg_view('input/checkboxes', array('internalname' => 'skipfirst', 'options' => array(
