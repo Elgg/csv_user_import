@@ -10,7 +10,6 @@
 	 */
 
 	admin_gatekeeper();
-	action_gatekeeper();
 	
 	global $CONFIG;
 	
