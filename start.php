@@ -13,6 +13,9 @@
 		// Register a page handler, so we can have nice URLs
 		register_page_handler('csvimport','csvimport_page_handler');
 		
+		// Admin menu link
+		elgg_add_admin_submenu_item('csvimport', elgg_echo('csvimport:menu:import'), 'users');
+		
 		// Register some actions
 		register_action("csvimport/import",false, $CONFIG->pluginspath . "csvimport/actions/import.php", true);
 	}
@@ -21,12 +24,12 @@
 	 * Adding the diagnostics to the admin menu
 	 *
 	 */
-	function csvimport_pagesetup() {
-		if (get_context() == 'admin' && isadminloggedin()) {
-			global $CONFIG;
-			add_submenu_item(elgg_echo('csvimport:menu:import'), $CONFIG->wwwroot . 'pg/csvimport/');
-		}
-	}
+	//function csvimport_pagesetup() {
+	//	if (get_context() == 'admin' && isadminloggedin()) {
+	//		global $CONFIG;
+			//add_submenu_item(elgg_echo('csvimport:menu:import'), $CONFIG->wwwroot . 'pg/csvimport/');
+	//	}
+	//}
 	/**
 	 * Email domains page.
 	 *
