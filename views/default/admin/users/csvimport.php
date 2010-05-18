@@ -4,7 +4,8 @@
  */
 	
 global $CONFIG;
-	
+
+echo elgg_view_title(elgg_echo('csvimport:menu:import'));	
 echo "<div class='margin_top'>".elgg_view('output/longtext', array('value' => elgg_echo('csvimport:description')))."</div>";
 	
 $file = elgg_view('input/file', array('internalname' => 'csvimport'));
