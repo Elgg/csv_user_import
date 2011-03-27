@@ -1,22 +1,24 @@
 <?php
 /**
- * Elgg csv import
+ * CSV user import admin view
  */
 	
-global $CONFIG;
+echo autop(elgg_echo('csvimport:description'));
 
-echo elgg_view_title(elgg_echo('csvimport:menu:import'));	
-echo "<div class='margin_top'>".elgg_view('output/longtext', array('value' => elgg_echo('csvimport:description')))."</div>";
-	
 $file = elgg_view('input/file', array('internalname' => 'csvimport'));
-$checkbox = elgg_view('input/checkboxes', array('internalname' => 'skipfirst', 'options' => array(
-	elgg_echo('csvimport:label:skipfirstline') => 'skipfirst'
-)));
+$checkbox = elgg_view('input/checkboxes', array(
+	'internalname' => 'skipfirst',
+	'options' => array(elgg_echo('csvimport:label:skipfirstline') => 'skipfirst'),
+));
 $button = elgg_view('input/submit', array('value' => elgg_echo('import')));
 	
-$form_body = <<< END
-	
-			$file $checkbox
-			$button
-END;
-echo elgg_view('input/form', array('enctype' => 'multipart/form-data', 'body' => $form_body, 'action' => $CONFIG->url . "action/csvimport/import"));
+$form_body = <<<HTML
+	$file $checkbox
+	$button
+HTML;
+
+echo elgg_view('input/form', array(
+	'enctype' => 'multipart/form-data',
+	'body' => $form_body,
+	'action' => 'action/csvimport/import',
+));
