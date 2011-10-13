@@ -13,4 +13,8 @@ function csv_user_import_init() {
 	// Register the import action
 	$base = elgg_get_plugins_path() . 'csv_user_import/actions';
 	elgg_register_action('user_import/import', "$base/import.php", 'admin');
+
+	// csv library
+	$base = elgg_get_plugins_path() . 'csv_user_import/lib';
+	elgg_register_library('csv_user_import', "$base/csv_user_import.php");
 }

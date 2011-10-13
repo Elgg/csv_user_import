@@ -11,10 +11,10 @@ $english = array(
 		USERNAME, NAME, EMAIL ADDRESS',
 	'csvimport:label:skipfirstline' => 'Skip the first line',
 	'csvimport:import:error' => 'There was a problem importing this file.',
-	'csvimport:import:success' => '%d out of %d users successfully imported!',
+	'csvimport:import:success' => 'Imported %d users.',
 	'csvimport:import:warning:linelength' => 'Warning line %d: Unexpected length',
 	'csvimport:import:warning:missingfield' => 'Warning line %d: Missing fields',
-	'csvimport:import:warning:importuserfailed' => 'Warning line $d: Could not import user %s',
+	'csvimport:import:warning:importuserfailed' => 'Warning line %d: Could not import user %s',
 );
 
 add_translation("en", $english);
