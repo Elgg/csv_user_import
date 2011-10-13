@@ -3,17 +3,14 @@
  * Elgg csv user import
  */
 
-register_elgg_event_handler('init', 'system', 'csvimport_init');
+elgg_register_event_handler('init', 'system', 'csv_user_import_init');
 
-/**
- * Initialise the csvimport tool
- */
-function csvimport_init() {
+function csv_user_import_init() {
 
 	// Admin menu link
-	elgg_register_admin_menu_item('administer', 'csvimport', 'users');
+	elgg_register_admin_menu_item('administer', 'csv_import', 'users');
 
 	// Register the import action
-	$base = elgg_get_plugins_path() . 'csvimport/actions';
-	elgg_register_action('csvimport/import', "$base/import.php", 'admin');
+	$base = elgg_get_plugins_path() . 'csv_user_import/actions';
+	elgg_register_action('user_import/import', "$base/import.php", 'admin');
 }

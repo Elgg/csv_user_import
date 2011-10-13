@@ -5,20 +5,21 @@
 	
 echo autop(elgg_echo('csvimport:description'));
 
-$file = elgg_view('input/file', array('internalname' => 'csvimport'));
+$file = elgg_view('input/file', array('name' => 'csvimport'));
 $checkbox = elgg_view('input/checkboxes', array(
-	'internalname' => 'skipfirst',
+	'name' => 'skipfirst',
 	'options' => array(elgg_echo('csvimport:label:skipfirstline') => 'skipfirst'),
 ));
 $button = elgg_view('input/submit', array('value' => elgg_echo('import')));
 	
 $form_body = <<<HTML
-	$file $checkbox
+	<div>$file</div>
+	<div>$checkbox</div>
 	$button
 HTML;
 
 echo elgg_view('input/form', array(
 	'enctype' => 'multipart/form-data',
 	'body' => $form_body,
-	'action' => 'action/csvimport/import',
+	'action' => 'action/user_import/import',
 ));

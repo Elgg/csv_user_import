@@ -5,7 +5,7 @@
  */
 
 $english = array(
-	'admin:users:csvimport' => 'Import from CSV file',
+	'admin:users:csv_import' => 'Import Users',
 	'csvimport:description' => 'Select a CSV file to import which must contain a list of users in the following format:
 		
 		USERNAME, NAME, EMAIL ADDRESS',
