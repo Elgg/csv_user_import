@@ -4,7 +4,16 @@
  * 
  */
 
-$flag = get_input('skipfirst');
+$first_line = get_input('first_line');
+$separator = get_input('separator');
+switch ($separator) {
+	case 'tab':
+		$separator = "\t";
+		break;
+	default:
+		$separator = ',';
+		break;
+}
 
 $file = "";
 
@@ -15,7 +24,7 @@ if (isset($_FILES['csvimport']) && $_FILES['csvimport']['error'] == 0) {
 if ($file) {
 	elgg_load_library('csv_user_import');
 
-	$num_users = csv_user_import($file, $flag);
+	$num_users = csv_user_import($file, $first_line, $separator);
 	if (is_int($num_users)) {
 		system_message(elgg_echo('csvimport:import:success', array($num_users)));
 	} else {
