@@ -6,15 +6,14 @@
 
 $english = array(
 	'admin:users:csv_import' => 'Import Users',
-	'csvimport:description' => 'Select a CSV file to import which must contain a list of users in the following format:
-		
-		USERNAME, NAME, EMAIL ADDRESS',
+	'csvimport:description' => 'Import users from a comma-separated values (CSV) file. There are instructions in the readme file.',
 
-	'csvimport:title:header' => 'CSV Header',
-	'csvimport:label:skipfirstline' => 'Skip the first line',
+	'csvimport:title:file' => 'CSV file',
+	'csvimport:title:header' => 'CSV header',
+	'csvimport:label:skipfirstline' => 'Skip the header',
 	'csvimport:label:noheader' => 'There is no header',
 	'csvimport:label:useheader' => 'The header defines the field names',
-	'csvimport:title:separator' => 'Field Separator',
+	'csvimport:title:separator' => 'Field separator',
 	'csvimport:label:comma' => 'Comma separated',
 	'csvimport:label:tab' => 'Tab separated',
 	'csvimport:title:notify' => 'Notify the imported users',

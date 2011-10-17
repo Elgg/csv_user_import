@@ -11,8 +11,8 @@ function csv_user_import_init() {
 	elgg_register_admin_menu_item('administer', 'csv_import', 'users');
 
 	// Register the import action
-	$base = elgg_get_plugins_path() . 'csv_user_import/actions';
-	elgg_register_action('user_import/import', "$base/import.php", 'admin');
+	$base = elgg_get_plugins_path() . 'csv_user_import/actions/csv_user_import';
+	elgg_register_action('csv_user_import/import', "$base/import.php", 'admin');
 
 	// csv library
 	$base = elgg_get_plugins_path() . 'csv_user_import/lib';
