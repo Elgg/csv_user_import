@@ -72,6 +72,9 @@ function csv_user_import($filename, $header = 'none', $delimiter = ",", $notify 
 		$user = csv_user_create($data, $notify);
 		if ($user) {
 			$num_imported++;
+
+			$data['user'] = $user;
+			elgg_trigger_plugin_hook('csv_import', 'user', $data);
 		} else {
 			register_error(elgg_echo('csvimport:warning:importuserfailed', array($line, $data['username'])));
 			continue;
