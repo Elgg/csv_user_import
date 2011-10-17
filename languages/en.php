@@ -11,12 +11,15 @@ $english = array(
 		USERNAME, NAME, EMAIL ADDRESS',
 
 	'csvimport:title:header' => 'CSV Header',
-	'csvimport:title:separator' => 'Field Separator',
 	'csvimport:label:skipfirstline' => 'Skip the first line',
 	'csvimport:label:noheader' => 'There is no header',
 	'csvimport:label:useheader' => 'The header defines the field names',
+	'csvimport:title:separator' => 'Field Separator',
 	'csvimport:label:comma' => 'Comma separated',
 	'csvimport:label:tab' => 'Tab separated',
+	'csvimport:title:notify' => 'Notify the imported users',
+	'csvimport:label:yes' => 'Yes',
+	'csvimport:label:no' => 'No',
 
 	'csvimport:error:requiredfield' => 'Required field missing in CSV header: %s',
 	'csvimport:warning:iconfile' => "Unable to set the user's icon as %s",

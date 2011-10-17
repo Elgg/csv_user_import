@@ -31,12 +31,24 @@ $separator = elgg_view('input/radio', array(
 	),
 	'value' => 'comma',
 ));
+
+$notify_title = elgg_echo('csvimport:title:notify');
+$notify = elgg_view('input/radio', array(
+	'name' => 'notify',
+	'options' => array(
+		elgg_echo('csvimport:label:yes') => 1,
+		elgg_echo('csvimport:label:no') => 0,
+	),
+	'value' => true,
+));
+
 $button = elgg_view('input/submit', array('value' => elgg_echo('import')));
 
 $form_body = <<<HTML
 	<div>$file</div>
 	<div><h3>$header_title</h3> $first_line</div>
 	<div><h3>$separator_title</h3> $separator</div>
+	<div><h3>$notify_title</h3> $notify</div>
 	<div class='elgg-foot'>$button</div>
 HTML;
 

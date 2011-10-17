@@ -9,9 +9,10 @@
  * @param string $filename
  * @param string $header     'none', 'skip', 'header'
  * @param string $delimiter  "," or "\t"
+ * @param bool   $notify     Send email notification
  * @return int The number of users created or false on failure
  */
-function csv_user_import($filename, $header = 'none', $delimiter = ",") {
+function csv_user_import($filename, $header = 'none', $delimiter = ",", $notify = false) {
 
 	$required_fields = array('username', 'name', 'email');
 
@@ -27,6 +28,7 @@ function csv_user_import($filename, $header = 'none', $delimiter = ",") {
 		case 'header':
 			$fields = fgetcsv($f, 0, $delimiter);
 			$fields = array_map('trim', $fields);
+			$fields = array_map('strtolower', $fields);
 			foreach ($required_fields as $field) {
 				if (!in_array($field, $fields)) {
 					register_error(elgg_echo('csvimport:error:requiredfield', array($field)));
@@ -47,6 +49,8 @@ function csv_user_import($filename, $header = 'none', $delimiter = ",") {
 	while ($values = fgetcsv($f, 0, $delimiter)) {
 		$line++;
 
+		$values = array_map('trim', $values);
+
 		// to be as forgiving as possible in formats, we correct keys/values each time
 		$keys = $fields;
 		if (count($values) < count($keys)) {
@@ -65,10 +69,9 @@ function csv_user_import($filename, $header = 'none', $delimiter = ",") {
 			}
 		}
 
-		$user = csv_user_create($data);
+		$user = csv_user_create($data, $notify);
 		if ($user) {
 			$num_imported++;
-			//notify_user($new_user->guid, $site->guid, elgg_echo('useradd:subject'), sprintf(elgg_echo('useradd:body'), $name, $site->name, $site->url, $username, $password));
 		} else {
 			register_error(elgg_echo('csvimport:warning:importuserfailed', array($line, $data['username'])));
 			continue;
@@ -84,9 +87,12 @@ function csv_user_import($filename, $header = 'none', $delimiter = ",") {
  * Create a user
  *
  * @param array $params Array with keys username, name, email, password, and icon
+ * @param bool  $notify Should the user be notified of the new account by email?
  * @return ElggUser (null on failure)
  */
-function csv_user_create($params) {
+function csv_user_create($params, $notify = false) {
+
+	$site = elgg_get_site_entity();
 
 	if (!isset($params['password']) || !trim($params['password']))  {
 		$password = generate_random_cleartext_password();
@@ -109,6 +115,24 @@ function csv_user_create($params) {
 
 	if (isset($params['icon']) && $params['icon']) {
 		csv_user_set_icon($user, $params['icon']);
+	}
+
+	if ($notify) {
+		$body = elgg_echo('useradd:body', array(
+			$params['username'],
+			$site->name,
+			$site->getURL(),
+			$params['username'],
+			$password,
+		));
+
+		notify_user(
+				$user->getGUID(),
+				$site->getGUID(),
+				elgg_echo('useradd:subject'),
+				$body,
+				null,
+				'email');
 	}
 
 	return $user;
