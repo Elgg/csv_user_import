@@ -104,7 +104,7 @@ function csv_user_create($params, $notify = false) {
 	}
 
 	try {
-		$guid = register_user($params['username'], $password, $params['name'], $params['email']);
+		$guid = register_user($params['username'], $password, $params['name'], $params['email'], true);
 	} catch (Exception $e) {
 		register_error($e->getMessage());
 	}
